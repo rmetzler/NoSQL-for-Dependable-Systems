@@ -41,12 +41,11 @@ Consistency - Partition - Tolerance
 ## Eventual Consistent
 
 Tradeoff: 
+
 +  give up ACID‘s Atomicy and Consistency 
 +  get Performance and Partition Tolerance 
 +  Inconsistency Window: 
-+  „The period between the update and the 
-moment when it is guaranteed that any 
-observer will always see the updated value.“ 
++  „The period between the update and the moment when it is guaranteed that any observer will always see the updated value.“ 
 
 
 ### N / W / R
@@ -99,7 +98,8 @@ Dynamo paper
 
 
 ### Cassandra 0.6.3
-column oriented 
+
++ column oriented 
 + created by Facebook, maintained by Apache 
 + inspired by Amazon Dynamo and Google BigTable 
 + written in Java 
@@ -108,13 +108,12 @@ column oriented
 
 ### MongoDB 1.4.3
 
-Key Value Store (Document oriented) 
++ Key Value Store (Document oriented) 
 + uses custom TCP Protocol (BSON) 
 + written in C++ 
 + created by 10gen, AGPL 
 + http://www.mongodb.org/ 
-+ http://www.mongodb.org/display/DOCS/ 
-Home 
++ http://www.mongodb.org/display/DOCS/Home 
 
 #### Replication
 + Master/Slave Replication 
