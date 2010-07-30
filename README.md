@@ -15,18 +15,12 @@ Richard Metzler @rmetzler, Jan Schütze @dracoblue
 
 
 ## Fault Model for very large E-Commerce Websites
-performance is key 
-shopping cart should always be accessible 
-slightest outage has signiﬁcant ﬁnancialconsequences 
+On very large e-commerce websites like Amazon people order every minute _TODO:WRITE-SOME-FACTS_. Amazon has statistics showing a causal connection between response time of the amazon.com website and the time potential customers spend on the website. _TODO:SOURCE?_
+The customer's shopping cart has to be allways accessible for writes and the slightest outage has direct significant financial consequences.
 
-• failures are a normal case, not an exception 
-• disks failures 
-• network partitions 
-• data center unavailable 
-• what we want: 
-• always write, always read 
-• even in case of network partition 
-• replicate data accross multiple datacenters 
+But on the other side failures are the normal case, not an exception. Disks fail, the network experiences partitioning and whole data centers could become potentially unavailable because of natural disasters like hurricanes. 
+
+What our big e-commerce websites need is a datastore that is allways read and write enabled, even in presence of network partitions. Data must be replicated accross multiple datacenters and these datacenters may be located hundreds of kilometers away from each other and even on different continents.
 
 
 ## Replication
