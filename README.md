@@ -24,7 +24,7 @@ What our big e-commerce websites need is a datastore that is allways read and wr
 
 
 ## Replication
-async Message ~ not atomic 
++ async Message ~ not atomic 
 + sync Message ~ not partition tolerant, slow 
 
 ## Brewer's CAP Theorem
