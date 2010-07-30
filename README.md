@@ -31,17 +31,15 @@ Asynchronous updates can't be atomic, but they are potentially more resistant in
 
 ## Brewer's CAP Theorem
 
-In _TODO:YEAR_ Eric Brewer at this time head of Inktomi _TODO:CHECK_ hold a keynote at _TODO:CONFERENCE_. He presented his idea that was later _BEWIESEN_ in _SOURCE_ stating that atomic data consistency, high availability (~ performance) and network partition tolerance can't be achieved at any given time. This is called the CAP Theorem after the accronym for Consistency, Availability and Partinion tolerance.
+In _TODO:YEAR_ Eric Brewer at this time head of Inktomi _TODO:CHECK_ hold a keynote at _TODO:CONFERENCE_. He presented his idea that was later _BEWIESEN_ in _SOURCE_ stating that atomic data consistency, high availability (~ performance) and network partition tolerance can't be achieved at any given time. This is called the CAP Theorem after the acronym for Consistency, Availability and Partinion tolerance.
 
+Because you can't do anything against network partitions in large networks you have to pick between high availability and data consistency. As stated, large e-commerce websites usually go for high availability and trade consistency for that.
 
 ## Eventual Consistent
 
+Werner Vogels, CTO at Amazon, presented in his famous article _TODO:SOURCE_ his idea of eventual consistency. By trading ACID's atomicy and consistency for performance and partition tolerance it is possible to increase the responseness _TODO:DOES-THIS-WORD-EXISTS?_ and fault tolerance of websites. The database replications may not be fully consistent but a customer wouldn't usually experience any inconsistencies.
 
-Tradeoff: 
-
-+  give up ACID‘s Atomicy and Consistency 
-+  get Performance and Partition Tolerance 
-+  Inconsistency Window: „The period between the update and the moment when it is guaranteed that any observer will always see the updated value.“ 
+He defined the _inconsistency window_ as „The period between the update and the moment when it is guaranteed that any observer will always see the updated value.“ 
 
 
 ### N / W / R
