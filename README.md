@@ -31,16 +31,11 @@ Asynchronous updates can't be atomic, but they are potentially more resistant in
 
 ## Brewer's CAP Theorem
 
-Consistency - Partition - Tolerance 
-
-
-+  Atomic Data Consistency 
-+  High Availability (aka Performance) 
-+  Network Partition tolerant 
-+ only two of these can be achieved at any given timeAvailability 
+In _TODO:YEAR_ Eric Brewer at this time head of Inktomi _TODO:CHECK_ hold a keynote at _TODO:CONFERENCE_. He presented his idea that was later _BEWIESEN_ in _SOURCE_ stating that atomic data consistency, high availability (~ performance) and network partition tolerance can't be achieved at any given time. This is called the CAP Theorem after the accronym for Consistency, Availability and Partinion tolerance.
 
 
 ## Eventual Consistent
+
 
 Tradeoff: 
 
