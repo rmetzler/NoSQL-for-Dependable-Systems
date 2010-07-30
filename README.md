@@ -1,5 +1,19 @@
 # NOSQL in Dependable Systems
 
+__Abstract:__
+The fault model for very large e-commerce websites like Amazon is fundamentally different from standard website. These websites loose money when the aren't available (or just slow) for potential customers but can't risk to loose any data. The data has to be replicated between databases but traditional RDBMSs may not fit.
+This paper discusses some of the better known NoSQL software products available today.
+
+
+__Keywords:__
+Fault Tolerance, CAP Theorem, NoSQL, Dynamo, Riak, Cassandra, MongoDB, CouchDB
+
+__Authors:__ 
+Richard Metzler @rmetzler, Jan Schütze @dracoblue
+
+
+
+
 ## Fault Model for very large E-Commerce Websites
 performance is key 
 shopping cart should always be accessible 
