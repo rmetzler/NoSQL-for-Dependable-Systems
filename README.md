@@ -24,8 +24,10 @@ What our big e-commerce websites need is a datastore that is allways read and wr
 
 
 ## Replication
-+ async Message ~ not atomic 
-+ sync Message ~ not partition tolerant, slow 
+
+_Replication_ is one of the fundamental ideas for fault tolerant systems. But replicating data accross datacenters located several hundreds of kilometers away from each other takes time. Using a traditional RDBMS with ACID style transactions to replicate data in a distributed transaction may be slow and not very scalable. Synchronous atomic updates would not be tolerant towards network partitions.
+
+Asynchronous updates can't be atomic, but they are potentially more resistant in case of network partitioning as these are usually transient faults. 
 
 ## Brewer's CAP Theorem
 
@@ -44,8 +46,7 @@ Tradeoff:
 
 +  give up ACID‘s Atomicy and Consistency 
 +  get Performance and Partition Tolerance 
-+  Inconsistency Window: 
-+  „The period between the update and the moment when it is guaranteed that any observer will always see the updated value.“ 
++  Inconsistency Window: „The period between the update and the moment when it is guaranteed that any observer will always see the updated value.“ 
 
 
 ### N / W / R
