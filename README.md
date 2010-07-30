@@ -1,7 +1,7 @@
 # NOSQL in Dependable Systems
 
 __Abstract:__
-The fault model for very large e-commerce websites like Amazon is fundamentally different from standard website. These websites loose money when the aren't available (or just slow) for potential customers but can't risk to loose any data. The data has to be replicated between databases but traditional RDBMSs may not fit.
+The fault model for very large e-commerce websites like Amazon is fundamentally different from standard websites. These websites loose money when the aren't available (or just slow) for potential customers but can't risk to loose any data. The data has to be replicated between databases but traditional RDBMSs may not fit.
 This paper discusses some of the better known NoSQL software products available today.
 
 
@@ -9,12 +9,13 @@ __Keywords:__
 Fault Tolerance, CAP Theorem, NoSQL, Dynamo, Riak, Cassandra, MongoDB, CouchDB
 
 __Authors:__ 
-Richard Metzler @rmetzler, Jan Schütze @dracoblue
+Richard Metzler [@rmetzler](twitter.com/rmetzler "follow Richard Metzler on Twitter"),
+Jan Schütze [@dracoblue](twitter.com/dracoblue "follow Jan Schütze on Twitter")
 
 
+_TODO:EXPLAIN QUORUMS_
 
-
-## Fault Model for very large E-Commerce Websites
+## Fault Model
 On very large e-commerce websites like Amazon people order every minute _TODO:WRITE-SOME-FACTS_. Amazon has statistics showing a causal connection between response time of the amazon.com website and the time potential customers spend on the website. _TODO:SOURCE?_
 The customer's shopping cart has to be allways accessible for writes and the slightest outage has direct significant financial consequences.
 
@@ -29,6 +30,7 @@ _Replication_ is one of the fundamental ideas for fault tolerant systems. But re
 
 Asynchronous updates can't be atomic, but they are potentially more resistant in case of network partitioning as these are usually transient faults. 
 
+
 ## Brewer's CAP Theorem
 
 In _TODO:YEAR_ Eric Brewer at this time head of Inktomi _TODO:CHECK_ hold a keynote at _TODO:CONFERENCE_. He presented his idea that was later _BEWIESEN_ in _SOURCE_ stating that atomic data consistency, high availability (~ performance) and network partition tolerance can't be achieved at any given time. This is called the CAP Theorem after the acronym for Consistency, Availability and Partinion tolerance.
@@ -37,40 +39,51 @@ Because you can't do anything against network partitions in large networks you h
 
 ## Eventual Consistent
 
-Werner Vogels, CTO at Amazon, presented in his famous article _TODO:SOURCE_ his idea of eventual consistency. By trading ACID's atomicy and consistency for performance and partition tolerance it is possible to increase the responseness _TODO:DOES-THIS-WORD-EXISTS?_ and fault tolerance of websites. The database replications may not be fully consistent but a customer wouldn't usually experience any inconsistencies.
+Werner Vogels, CTO at Amazon, presented in his famous article _TODO:SOURCE_ his idea of data being "Eventual Consistent". By trading ACID's atomicy and consistency for performance and partition tolerance it is possible to increase the responseness _TODO:DOES-THIS-WORD-EXISTS?_ and fault tolerance of websites. The database replications may not be fully consistent but a customer wouldn't usually experience any inconsistencies.
 
 He defined the _inconsistency window_ as „The period between the update and the moment when it is guaranteed that any observer will always see the updated value.“ 
 
 
-### N / W / R
+### N / W / R Replica Configuration
 
-+  N - number of nodes, that store replicas of data 
-+  W - number of replicas that acknowledge a write operation 
-+  R - number of replicas contacted in a read operation 
-+  Consistency Guarantees 
-+  N < W+R ~ strong consistency 
-+  N >= W+R ~ weak / eventual consistency 
+Vogels introduces the reader to a short notation for replication configuration for _quorum_ like systems:
 
-+ Conﬁguration Properties 
-+ RDBMS: N = 2, W = 2, R = 1 
-+ fault tolerant: N = 3, W = 2, R = 2 
-+ consistency:  W = N 
-+ read optimized: R = 1 
-+ write optimized: W = 1
++  N = the number of nodes, that store replicas of the data 
++  W = the number of replicas that acknowledge a write operation 
++  R = the number of replicas contacted in a read operation 
 
-+  application speciﬁc     
-N / W / R conﬁguration 
-+  recovery from transient 
-and permanent failure
+With these numbers you are guaranteed _strong consistency_ if following condition holds:
+
++  N < W + R
+
+This is because the set of replicas for writing and reading the data overlap.
+
+If your replica configuration only holds the condition
+
++  N >= W + R
+
+it only guaranties weak or eventual consistency.
+
+A RDBMS is typically configured with {N = 2, W = 2, R = 1} while {N = 3, W = 2, R = 2} is a commonly used configuration for fault tolerant systems. 
+
+
+It is possible to deduce different attributes from these configuration properties.
+Consistency ofer all Nodes is reached if W = N .
+
+Read optimized systems will use R = 1 while write optimized systems use W = 1 .
+
+Cassandra is able to run in application speciﬁc N / W / R conﬁguration. This helps Cassandra to recover from transient and permanent failures.
 
 ## Products
 
-+ we installed and ran some simple tests on 
+we installed and ran some simple tests on 
+
 + Riak 
 + Cassandra 
 + CouchDB 
 + MongoDB 
-+ Disclaimer: very, very simple tests...
+
+Disclaimer: very, very simple tests...
 
 ### Riak 0.11.0
 
