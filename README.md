@@ -56,7 +56,7 @@ Vogels introduces the reader to a short notation for replication configuration f
 +  __W__ is the number of replicas that acknowledge a write operation 
 +  __R__ is the number of replicas contacted in a read operation 
 
-To avoid ties in failover scenarios usually an odd number is picked as N.
+To avoid ties in failover scenarios usually an odd number is picked for N.
 
 With these numbers you are guaranteed _strong consistency_ if following condition holds:
 
