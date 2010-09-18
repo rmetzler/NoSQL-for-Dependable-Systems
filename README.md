@@ -39,7 +39,7 @@ As the system replica managers in different partitions cannot communicate with e
 
 In 2000 Eric Brewer at this time chief scientist of Inktomi hold a keynote at the "Principles of Distributed Computing" conference. He presented his assumption that was later proved in "Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services" stating that atomic data consistency, high availability (i.e. performance) and network partition tolerance can't be achieved all together at any given time and you may get only two of these properties for every distributed operation. This is called the CAP Theorem after the acronym for __C__onsistency, __A__vailability and __P__artition tolerance.
 
-Because you can't do anything against network partitions in large networks you have to pick between high availability and data consistency. As stated, large e-commerce websites usually go for high availability and trade consistency for that.
+Because it is impossible to prevent network partitions in large networks the decision has to be between high availability and data consistency. As stated, large e-commerce websites usually go for high availability and trade consistency for that.
 
 # Eventual Consistent
 
