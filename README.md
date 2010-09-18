@@ -103,15 +103,13 @@ and ran some very simple tests to figure out how they behave in case of a fault.
 
 ## Riak 0.11.0
 
-Riak is created and maintained by Basho and the de facto open source reference
-implementation of the dynamo paper.
-
-Basho was founded by Ex-Akamai co workers and is written entirely in Erlang.
-It is released under the terms of Apache License 2.0 and has a HTTP Interface
-to read/write data.
+Riak is created and maintained by Basho (a company founded by Ex-Akamai employees) 
+and the de facto open source reference implementation of the dynamo paper.
+It is released under the terms of Apache License 2.0 .
 
 Riak is a document oriented key value store and also supports links between
 them. Documents are stored in so called buckets.
+Riak is written entirely in Erlang and has a HTTP Interface to read/write data.
 
 More information about Riak may be found at <https://wiki.basho.com/display/RIAK/Riak>.
 
