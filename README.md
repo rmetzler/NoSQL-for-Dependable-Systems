@@ -19,16 +19,16 @@ _TODO: Explain Split Brain_
 
 ## Fault Model
 On very large e-commerce websites like Amazon people order every minute _TODO: WRITE SOME FACTS_. Amazon has statistics showing a causal connection between response time of the amazon.com website and the time potential customers spend on the website. _TODO: SOURCE?_
-The customer's shopping cart has to be allways accessible for writes and the slightest outage has direct significant financial consequences.
+The customer's shopping cart has to be always accessible for writes and the slightest outage has direct significant financial consequences.
 
 But on the other side failures are the normal case, not an exception. Disks fail, the network experiences partitioning and whole data centers could become potentially unavailable because of natural disasters like hurricanes. 
 
-What our big e-commerce websites need is a datastore that is allways read and write enabled, even in presence of network partitions. Data must be replicated accross multiple datacenters and these datacenters may be located hundreds of kilometers away from each other and even on different continents.
+What our big e-commerce websites need is a datastore that is always read and write enabled, even in presence of network partitions. Data must be replicated across multiple datacenters and these datacenters may be located hundreds of kilometers away from each other and even on different continents.
 
 
 ## Replication
 
-_Replication_ is one of the fundamental ideas for fault tolerant systems. But replicating data accross datacenters located several hundreds of kilometers away from each other takes time. Using a traditional RDBMS with ACID style transactions to replicate data in a distributed transaction may be slow and not very scalable. Synchronous atomic updates would not be tolerant towards network partitions.
+_Replication_ is one of the fundamental ideas for fault tolerant systems. But replicating data across datacenters located several hundreds of kilometers away from each other takes time. Using a traditional RDBMS with ACID style transactions to replicate data in a distributed transaction may be slow and not very scalable. Synchronous atomic updates would not be tolerant towards network partitions.
 
 Asynchronous updates can't be atomic, but they are potentially more resistant in case of network partitioning as these are usually transient faults. 
 
@@ -72,7 +72,7 @@ A RDBMS is typically configured with {N = 2, W = 2, R = 1} while {N = 3, W = 2, 
 
 
 It is possible to deduce different attributes from these configuration properties.
-Consistency ofer all Nodes is reached if W = N .
+Consistency over all nodes is reached if W = N .
 
 Read optimized systems will use R = 1, while write optimized systems use W = 1 .
 
@@ -148,13 +148,78 @@ Dynamo paper
 + http://wiki.apache.org/couchdb/FrontPage 
 
 ## Experiments
-+  „Alice“ & „Bob“ 
-+  Virtual Box 
-+  Debian Squeeze 
+
+To test the fault tolerance features of the distributed database systems,
+we focused on the behavior in case of network split and synchronization
+after adding new nodes.
+
+For this purpose we set up two machines „Alice“ & „Bob“ (+ "Charles"). Both
+run a vanilla Debian Squeeze Release in a Virtual Box.
 
 ### Experiment 1
 
+The first experiment is meant to show what happens if a new node joins the
+distributed database.
+
+For this purpose we set up the node Alice and pushed 1000 data records into
+Alice. Now Bob joins the network. To be check if Bob already has all data
+we frequently tried to read the 1000th entry from Bob. If this was possible
+we assumed that Bob was sync or at least capable to answer in a consistent
+way.
+
+Results (Replicating to a new node):
+
+* Riak: 1 second
+* Cassandra (3 nodes): 20 seconds
+* CouchDB: 1 second
+* MongoDb: 2 second 
+
 ### Experiment 2
+
+To test how the distributed database system is able to manage a network
+split, we set up the second experiment.
+
+The two nodes Alice+Bob are synchronized and connected. Now we deactivated
+Bob's network and after that put 1000 data records into Alice. In this case
+it is impossible for Bob to have the fresh data, because a network split
+happened. We turned on the network and checked again, how long it takes
+for Bob to receive all data entries (by querying for the 1000th entry).
+
+Results (Replicating after network split):
+
+* Riak: 6 second
+* Cassandra (3 nodes): 20 seconds
+* CouchDB: 8 second
+* MongoDb: Failed, because reading from Slave returned an error 
+
+In MongoDB it's not possible to read from the Slave, when configured as
+Replica Pair.
+
+### Experiment 2b
+
+Since we had MongoDB as Replica Pair in the experiment 2, it was impossible
+to read from the Slave. That's why we made an experiment 2b with a slightly
+different configuration.
+
+We set up Alice and Bob as Replica Pair. Another MongoDB instance "Charles" was
+used as Arbiter (Quorum Device). MongoDB choose the first one (Alice) to be the
+Master and Bob the Slave. Now we pushed 1000 data records into Alice.
+
+Then we stopped Alice in 3 ways:
+
+* removed the network connection
+* stopped it gracefully
+* used: kill -9 
+
+After that we checked how long it takes Bob to recognize that Alice had
+disappeared and Bob becomes Master on its own.
+
+Results: It took 1 second for Bob to become Master and thus allowing the client
+to read from Bob.
+
+We noticed that stopping the node and kill -9 worked great. But it did not notice
+the network split, if we just removed the network connection. We assume that this
+is because of a timeout on the tcp layer. 
 
 ## Sources
 + Eric Brewer: „Towards Robust Distributed Systems“ 
