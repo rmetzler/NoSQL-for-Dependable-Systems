@@ -1,0 +1,48 @@
+% This is LLNCS.DEM the demonstration file of
+% the LaTeX macro package from Springer-Verlag
+% for Lecture Notes in Computer Science,
+% version 2.4 for LaTeX2e as of 16. April 2010
+%
+\documentclass{llncs}
+%
+\usepackage{makeidx}  % allows for indexgeneration
+\usepackage{hyperref}
+%
+\begin{document}
+%
+\frontmatter          % for the preliminaries
+%
+\pagestyle{headings}  % switches on printing of running heads
+\addtocmark{NOSQL in Dependable Systems} % additional mark in the TOC
+%
+\mainmatter              % start of the contributions
+%
+\title{NOSQL in Dependable Systems}
+%
+\titlerunning{NOSQL in Dependable Systems}  % abbreviated title (for running head)
+%                                     also used for the TOC unless
+%                                     \toctitle is used
+%
+\author{Richard Metzler \and Jan Sch\"utze}
+%
+\authorrunning{Ivar Ekeland et al.} % abbreviated author list (for running head)
+%
+%%%% list of authors for the TOC (use if author list has to be modified)
+\tocauthor{Richard Metzler and Jan Sch\"utze}
+%
+\institute{Universit\"at Potsdam, Am Neuen Palais 10, 14469 Potsdam, Germany,\\
+\email{presse@uni-potsdam.de},\\ 
+\texttt{http://uni-potsdam.de}
+}
+
+\maketitle              % typeset the title of the contribution
+
+\begin{abstract}
+The fault model for very large e-commerce websites like Amazon is fundamentally
+different from standard websites. These websites loose money when the aren't
+available (or just slow) for potential customers but can't risk to loose any
+data. The data has to be replicated between databases but traditional RDBMSs
+may not fit. This paper discusses some of the better known NoSQL software
+products available today.
+\keywords{fault tolerance, cap theorem, nosql, dynamo, riak, cassandra, mongodb, couchdb}
+\end{abstract}
