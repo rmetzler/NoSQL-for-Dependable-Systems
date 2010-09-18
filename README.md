@@ -12,15 +12,7 @@ Richard Metzler [@rmetzler](twitter.com/rmetzler "follow Richard Metzler on Twit
 Jan Schütze [@dracoblue](twitter.com/dracoblue "follow Jan Schütze on Twitter")
 
 
-<<<<<<< HEAD
-## Fault Model
-=======
-_TODO: EXPLAIN QUORUMS (Fault tolerant patterns II page 11)_
-_TODO: Explain Amnesia_
-_TODO: Explain Split Brain_
-
 # Fault Model
->>>>>>> 399c8756b5be2677abfd30d4ceacd611dc7a605e
 On very large e-commerce websites like Amazon people order every minute _TODO: WRITE SOME FACTS_. Amazon has statistics showing a causal connection between response time of the amazon.com website and the time potential customers spend on the website. _TODO: SOURCE?_
 The customer's shopping cart has to be always accessible for writes and the slightest outage has direct significant financial consequences.
 
@@ -36,27 +28,14 @@ _Replication_ is one of the fundamental ideas for fault tolerant systems. But re
 Asynchronous updates can't be atomic, but they are potentially more resistant in case of network partitioning as these are usually transient faults. 
 
 
-<<<<<<< HEAD
-## Amnesia
-
-
-
 ## Split Brain
 In distributed systems the interconnect between nodes is a weak spot. If it is broken, nodes are split into partitions unable to communicate and thus unable to share state. This scenario is called _split brain_. Nodes in split brain scenarios must be prevented from producing inconsistant state and one method to prevent inconsistency is the quorum consensus.
-
 
 ## Quorum
 As the system replica managers in different partitions cannot communicate with each other, the subgroup of replica managers within each partition must be able to decide independently whether they are allowed to carry out operations. A quorum is a subgroup of replica managers whose size gives it the right to carry out operations. __CITE: COULORIS__ One possible criteria for a quorum may be having a majority. Any other partition would be smaller than the majority partition and as a consequence only the majority partition would be the quorum. 
 
-_TODO: Explain Amnesia_
 
-
-
-
-## Brewer's CAP Theorem
-=======
 # Brewer's CAP Theorem
->>>>>>> 399c8756b5be2677abfd30d4ceacd611dc7a605e
 
 In 2000 Eric Brewer at this time chief scientist of Inktomi hold a keynote at the "Principles of Distributed Computing" conference. He presented his assumption that was later proved in "Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services" stating that atomic data consistency, high availability (i.e. performance) and network partition tolerance can't be achieved all together at any given time and you may get only two of these properties for every distributed operation. This is called the CAP Theorem after the acronym for __C__onsistency, __A__vailability and __P__artition tolerance.
 
@@ -64,7 +43,7 @@ Because you can't do anything against network partitions in large networks you h
 
 # Eventual Consistent
 
-Werner Vogels, CTO at Amazon, presented in his famous article _TODO:SOURCE_ his idea of data being "Eventual Consistent". By trading ACID's atomicy and consistency for performance and partition tolerance it is possible to increase the response time and fault tolerance of websites. The database replications may not be fully consistent but a customer wouldn't usually experience any inconsistencies.
+Werner Vogels, CTO at Amazon, presented in his article "Eventually Consistent" __CITE: eventually-consistent___  his idea of data being not consistent through atomic transactions but only eventually consistent. By trading ACID's atomicy and consistency for performance and partition tolerance it is possible to increase the response time and fault tolerance of websites. The database replications may not be fully consistent but a customer wouldn't usually experience any inconsistencies.
 
 He defined the __inconsistency window__ as "The period between the update and the moment when it is guaranteed that any observer will always see the updated value." 
 
@@ -247,6 +226,7 @@ is because of a timeout on the tcp layer.
 # Sources
 + Eric Brewer: "Towards Robust Distributed Systems" <http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf>
 + Gilbert, Lynch: "Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services"
-+ Werner Vogels: "Eventual Consistent" 
++ Werner Vogels: "Eventually Consistent" http://www.allthingsdistributed.com/2008/12/eventually_consistent.html 
 + W.  Vogels et all: "Dynamo:  Amazon‘s highly Available Key-Value Store" 
-+ Lakshman, Malik: "Cassandra - A Decentralized Structured Storage System" 
++ Lakshman, Malik: "Cassandra. A Decentralized Structured Storage System"
++ Coulouris: "Distributed Systems. Concepts and Design" 
