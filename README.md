@@ -79,72 +79,109 @@ Cassandra is able to run in application specific N / W / R configuration. This h
 
 # Products
 
-we installed and ran some simple tests on 
+There are several NoSQL systems available. We focused on 4 of the major ones:
 
-+ Riak 
-+ Cassandra 
-+ CouchDB 
-+ MongoDB 
+* Riak (document oriented)
+* Cassandra (column oriented)
+* CouchDB (document oriented)
+* MongoDB (document oriented)
 
-Disclaimer: very, very simple tests...
+In terms of the CAP theorem: Riak, Cassandra and CouchDB provide availability
+and partition tolerance. MongoDB on the other hand provides consistency and
+partition tolerance.
+
+We installed those on multiple virtual machines, connected them with each other
+and ran some very simple tests to figure out how they behave in case of a fault.
 
 ## Riak 0.11.0
 
-+ Key-Value Store (Document oriented) 
-+ Links 
-+ de facto reference implementation of the 
-Dynamo paper 
-+ created by Basho (ex Akamai), APL 2.0 
-+ written in Erlang, HTTP Interface 
-+ https://wiki.basho.com/display/RIAK/Riak
+Riak is created and maintained by Basho and the de facto open source reference
+implementation of the dynamo paper.
+
+Basho was founded by Ex-Akamai co workers and is written entirely in Erlang.
+It is released under the terms of Apache License 2.0 and has a HTTP Interface
+to read/write data.
+
+Riak is a document oriented key value store and also supports links between
+them. Documents are stored in so called buckets.
+
+More information about Riak may be found at <https://wiki.basho.com/display/RIAK/Riak>.
 
 ### Replication Config
 
-+ N can vary per bucket 
-+ R & W can vary per operation 
-+ additional Quorums for 
-+ durable writes to disk 
-+ deletes
+One of Riaks features is the variable configuration of N W R:
 
+* N can vary for each bucket 
+* R & W can vary for each operation (read/write/delete) 
+
+There are also additional quorums for:
+
+* durable writes to disk 
+* deletes
 
 ## Cassandra 0.6.3
 
-+ column oriented 
-+ created by Facebook, maintained by Apache 
-+ inspired by Amazon Dynamo and Google BigTable 
-+ written in Java 
-+ http://cassandra.apache.org/ 
-+ http://wiki.apache.org/cassandra/FrontPage
+Cassandra is a column oriented distributed database system. It was created by
+Facebook and is maintained by the Apache Foundation. Cassandra is released
+under the Apache License 2.0.
+
+The architecture is inspired by Amazon's Dynamo and the Google BigTable.
+
+Cassandra is a column oriented distributed database system written in Java.
+Those columns need to be configured before the Cassandra node launches. Thus
+Cassandra is not schema less like one may expect from the term nosql. Once
+configured you can search and order the documents by these columns.
+
+More information about Cassandra may be found at the official website at
+<http://cassandra.apache.org/> or at the wiki at
+<http://wiki.apache.org/cassandra/FrontPage>.
 
 ## MongoDB 1.4.3
 
-+ Key Value Store (Document oriented) 
-+ uses custom TCP Protocol (BSON) 
-+ written in C++ 
-+ created by 10gen, AGPL 
-+ http://www.mongodb.org/ 
-+ http://www.mongodb.org/display/DOCS/Home 
+MongoDB is a document oriented distributed database system by 10gen. It's
+available under the terms of GNU Affero General Public License. 
+
+It uses a custom TCP protocal (BSON) and is written in C++.
+
+More information about MongoDB is available at the official website at
+<http://www.mongodb.org/> or at the wiki at
+<http://www.mongodb.org/display/DOCS/Home>.
 
 ## Replication
-+ Master/Slave Replication 
-+ Replica Pairs 
-+ Arbiter decides who is Master (Quorum) 
-+ only allowed to write / read from Master 
-+ Replica Sets coming soon...
 
-## crash
-+ reindex MongoDB on Crash Fault 
-+ may take several hours 
-+ increased MTTR
+There is Master/Slave replication in MongoDB available. In this case one can
+read from the Slaves and the Master, but write only into the Master.
+
+Additionally there are Replica Pairs available. When using Replica Pairs only
+one of those two nodes is the Master. Only read and write is possible on the
+master of the Replica Pair.
+
+In case one node of the Replica Pair fails the other one is made the new
+master. Deciding who is the master can be done by an external Arbiter (Quorum
+Device).
+
+The MongoDB Team is currently working on Replica Sets, which are meant to allow
+even more then 2 machines to be part of this replication architecture.
+
+## Crash
+
+In case a MongoDB crashs, it has to reindex the entire database. According to
+David Mytton's blogpost <http://blog.boxedice.com/2010/02/28/notes-from-a-production-mongodb-deployment/>
+this takes up to 72 hours for 664.000.000 database entries.
+
+That's why MongoDB has an increased MTTR (Mean Time To Repair).
 
 ## CouchDB 0.11.0
 
-+ Key Value Store ( Document oriented) 
-+ HTTP interface, JSON objects 
-+ Apache project 
-+ written in Erlang 
-+ http://couchdb.apache.org/ 
-+ http://wiki.apache.org/couchdb/FrontPage 
+CouchDB is aa Apache Project and written in Erlang. It's document oriented and
+supports views written in Javascript.
+
+Access to the data is made available via an http interface by exchanging JSON
+objects.
+
+More information about CouchDB is available at the official website at
+<http://couchdb.apache.org> or at the wiki at
+<http://wiki.apache.org/couchdb/FrontPage>.
 
 # Experiments
 
@@ -161,7 +198,7 @@ The first experiment is meant to show what happens if a new node joins the
 distributed database.
 
 For this purpose we set up the node Alice and pushed 1000 data records into
-Alice. Now Bob joins the network. To be check if Bob already has all data
+Alice. Now Bob joins the network. To check if Bob already has all data
 we frequently tried to read the 1000th entry from Bob. If this was possible
 we assumed that Bob was sync or at least capable to answer in a consistent
 way.
@@ -171,7 +208,7 @@ Results (Replicating to a new node):
 * Riak: 1 second
 * Cassandra (3 nodes): 20 seconds
 * CouchDB: 1 second
-* MongoDb: 2 second 
+* MongoDb: 2 seconds 
 
 ## Experiment 2
 
@@ -186,10 +223,10 @@ for Bob to receive all data entries (by querying for the 1000th entry).
 
 Results (Replicating after network split):
 
-* Riak: 6 second
+* Riak: 6 seconds
 * Cassandra (3 nodes): 20 seconds
-* CouchDB: 8 second
-* MongoDb: Failed, because reading from Slave returned an error 
+* CouchDB: 8 seconds
+* MongoDb: Failed, because reading from Slave returns an error 
 
 In MongoDB it's not possible to read from the Slave, when configured as
 Replica Pair.
@@ -201,7 +238,7 @@ to read from the Slave. That's why we made an experiment 2b with a slightly
 different configuration.
 
 We set up Alice and Bob as Replica Pair. Another MongoDB instance "Charles" was
-used as Arbiter (Quorum Device). MongoDB choose the first one (Alice) to be the
+used as Arbiter (Quorum Device). MongoDB choosed the first one (Alice) to be the
 Master and Bob the Slave. Now we pushed 1000 data records into Alice.
 
 Then we stopped Alice in 3 ways:
@@ -213,7 +250,7 @@ Then we stopped Alice in 3 ways:
 After that we checked how long it takes Bob to recognize that Alice had
 disappeared and Bob becomes Master on its own.
 
-Results: It took 1 second for Bob to become Master and thus allowing the client
+Result: It took 1 second for Bob to become Master and thus allowing the client
 to read from Bob.
 
 We noticed that stopping the node and kill -9 worked great. But it did not notice
@@ -221,8 +258,11 @@ the network split, if we just removed the network connection. We assume that thi
 is because of a timeout on the tcp layer. 
 
 # Sources
-+ Eric Brewer: "Towards Robust Distributed Systems" <http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf>
-+ Gilbert, Lynch: "Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services"
-+ Werner Vogels: "Eventual Consistent" 
-+ W.  Vogels et all: "Dynamo:  Amazon‘s highly Available Key-Value Store" 
-+ Lakshman, Malik: "Cassandra - A Decentralized Structured Storage System" 
+* Eric Brewer: "Towards Robust Distributed Systems"
+  <http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf>
+* Gilbert, Lynch: "Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services"
+* Werner Vogels: "Eventual Consistent"
+* W. Vogels et all: "Dynamo:  Amazon's highly Available Key-Value Store
+* Lakshman, Malik: "Cassandra - A Decentralized Structured Storage System"
+* David Mytton: "Notes from a production MongoDB deployment"
+  <http://blog.boxedice.com/2010/02/28/notes-from-a-production-mongodb-deployment/>
