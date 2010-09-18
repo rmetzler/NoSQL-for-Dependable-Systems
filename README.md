@@ -127,16 +127,16 @@ There are also additional quorums for:
 
 ## Cassandra 0.6.3
 
-Cassandra is a column oriented distributed database system. It was created by
-Facebook and is maintained by the Apache Foundation. Cassandra is released
-under the Apache License 2.0.
-
-The architecture is inspired by Amazon's Dynamo and the Google BigTable.
-
 Cassandra is a column oriented distributed database system written in Java.
-Those columns need to be configured before the Cassandra node launches. Thus
-Cassandra is not schema less like one may expect from the term nosql. Once
-configured you can search and order the documents by these columns.
+It was created by Facebook and donated to the Apache Foundation. Cassandra 
+is released under the Apache License 2.0.
+
+Cassandra's architecture is inspired by Amazon's Dynamo and the Google BigTable.
+
+When developing applications with Cassandra the developer need to configure the
+collumns before Cassandra can be started. Thus Cassandra is not schema less like
+one may expect from the term NoSQL. Once configured you can search and order the
+documents by these columns.
 
 More information about Cassandra may be found at the official website at
 <http://cassandra.apache.org/> or at the wiki at
