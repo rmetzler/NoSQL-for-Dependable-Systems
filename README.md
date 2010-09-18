@@ -144,7 +144,7 @@ More information about Cassandra may be found at the official website at
 
 ## MongoDB 1.4.3
 
-MongoDB is a document oriented distributed database system by 10gen. It's
+MongoDB is a document oriented distributed database system by 10gen. It is
 available under the terms of GNU Affero General Public License. 
 
 It uses a custom TCP protocal (BSON) and is written in C++.
@@ -179,7 +179,7 @@ That's why MongoDB has an increased MTTR (Mean Time To Repair).
 
 ## CouchDB 0.11.0
 
-CouchDB is aa Apache Project and written in Erlang. It's document oriented and
+CouchDB is aa Apache Project and written in Erlang. It is document oriented and
 supports views written in Javascript.
 
 Access to the data is made available via an http interface by exchanging JSON
@@ -234,8 +234,7 @@ Results (Replicating after network split):
 * CouchDB: 8 seconds
 * MongoDb: Failed, because reading from Slave returns an error 
 
-In MongoDB it's not possible to read from the Slave, when configured as
-Replica Pair.
+When configured as replica pair it is not possible to read from the MongoDB Slave.
 
 ## Experiment 2b
 
