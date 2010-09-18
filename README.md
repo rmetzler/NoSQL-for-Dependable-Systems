@@ -109,7 +109,7 @@ It is released under the terms of Apache License 2.0 .
 
 Riak is a document oriented key value store and also supports links between
 them. Documents are stored in so called buckets.
-Riak is written entirely in Erlang and has a HTTP Interface to read/write data.
+Riak is written entirely in Erlang and has an HTTP Interface to read/write data.
 
 More information about Riak may be found at <https://wiki.basho.com/display/RIAK/Riak>.
 
@@ -179,10 +179,10 @@ That's why MongoDB has an increased MTTR (Mean Time To Repair).
 
 ## CouchDB 0.11.0
 
-CouchDB is aa Apache Project and written in Erlang. It is document oriented and
-supports views written in Javascript.
+CouchDB is a document oriented database written in Erlang with support for JavaScript views.
+CouchDB is an Apache Project.
 
-Access to the data is made available via an http interface by exchanging JSON
+Access to the data is made available via an HTTP interface by exchanging JSON
 objects.
 
 More information about CouchDB is available at the official website at
