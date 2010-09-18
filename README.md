@@ -43,7 +43,7 @@ Because you can't do anything against network partitions in large networks you h
 
 Werner Vogels, CTO at Amazon, presented in his famous article _TODO:SOURCE_ his idea of data being "Eventual Consistent". By trading ACID's atomicy and consistency for performance and partition tolerance it is possible to increase the response time and fault tolerance of websites. The database replications may not be fully consistent but a customer wouldn't usually experience any inconsistencies.
 
-He defined the __inconsistency window__ as „The period between the update and the moment when it is guaranteed that any observer will always see the updated value.“ 
+He defined the __inconsistency window__ as "The period between the update and the moment when it is guaranteed that any observer will always see the updated value." 
 
 
 ### N / W / R Replica Configuration
@@ -153,7 +153,7 @@ To test the fault tolerance features of the distributed database systems,
 we focused on the behavior in case of network split and synchronization
 after adding new nodes.
 
-For this purpose we set up two machines „Alice“ & „Bob“ (+ "Charles"). Both
+For this purpose we set up two machines "Alice" & "Bob" (+ "Charles"). Both
 run a vanilla Debian Squeeze Release in a Virtual Box.
 
 ### Experiment 1
@@ -222,8 +222,8 @@ the network split, if we just removed the network connection. We assume that thi
 is because of a timeout on the tcp layer. 
 
 ## Sources
-+ Eric Brewer: „Towards Robust Distributed Systems“ <http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf>
-+ Gilbert, Lynch: „Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services“
-+ Werner Vogels: „Eventual Consistent“ 
-+ W.  Vogels et all: „Dynamo:  Amazon‘s highly Available Key-Value Store“ 
-+ Lakshman, Malik: „Cassandra - A Decentralized Structured Storage System“ 
++ Eric Brewer: "Towards Robust Distributed Systems" <http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf>
++ Gilbert, Lynch: "Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services"
++ Werner Vogels: "Eventual Consistent" 
++ W.  Vogels et all: "Dynamo:  Amazon‘s highly Available Key-Value Store" 
++ Lakshman, Malik: "Cassandra - A Decentralized Structured Storage System" 
