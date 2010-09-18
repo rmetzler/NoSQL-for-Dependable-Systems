@@ -83,7 +83,7 @@ Cassandra is able to run in application specific N / W / R configuration. This h
 # Ring topology
 
 Cassandra and Riak are both heavily inspired by Amazon's Dynamo and both organize nodes in a ring topology. Also Cloudant's BigCouch __CITE: BIGCOUCH__ of CouchDB is closely modeled after Dynamo and features a ring to replicate CouchDB instances.
-N consecutive nodes on the ring form one replica set and replica sets overlap. By distributing the nodes in the physical space a better fault should be obtained.
+N consecutive nodes on the ring form one replica set and replica sets overlap. By distributing the nodes in the physical space a better fault tolerance should be obtained.
 
 # Products
 
