@@ -109,7 +109,7 @@ It is released under the terms of Apache License 2.0 .
 
 Riak is a document oriented key value store and also supports links between
 them. Documents are stored in so called buckets.
-Riak is written entirely in Erlang and has an HTTP Interface to read/write data.
+Riak is written entirely in Erlang and has an HTTP interface to read and write data.
 
 More information about Riak may be found at <https://wiki.basho.com/display/RIAK/Riak>.
 
@@ -192,11 +192,12 @@ More information about CouchDB is available at the official website at
 # Experiments
 
 To test the fault tolerance features of the distributed database systems,
-we focused on the behavior in case of network split and synchronization
+we focused on the behavior in case of network splits and synchronization
 after adding new nodes.
 
-For this purpose we set up two machines "Alice" & "Bob" (+ "Charles"). Both
-run a vanilla Debian Squeeze Release in a Virtual Box.
+For this purpose we set up the virtual machines "Alice" and "Bob". Both
+run a vanilla Debian Squeeze release in Virtual Box. For the Cassandra
+experiments we added a third identical machine called "Charly".
 
 ## Experiment 1
 
@@ -204,9 +205,9 @@ The first experiment is meant to show what happens if a new node joins the
 distributed database.
 
 For this purpose we set up the node Alice and pushed 1000 data records into
-Alice. Now Bob joins the network. To check if Bob already has all data
+Alice. Then Bob joined the network. To check if Bob already had all data
 we frequently tried to read the 1000th entry from Bob. If this was possible
-we assumed that Bob was sync or at least capable to answer in a consistent
+we assumed that Bob was in sync or at least capable to answer in a consistent
 way.
 
 Results (Replicating to a new node):
@@ -221,13 +222,13 @@ Results (Replicating to a new node):
 To test how the distributed database system is able to manage a network
 split, we set up the second experiment.
 
-The two nodes Alice+Bob are synchronized and connected. Now we deactivated
-Bob's network and after that put 1000 data records into Alice. In this case
-it is impossible for Bob to have the fresh data, because a network split
-happened. We turned on the network and checked again, how long it takes
-for Bob to receive all data entries (by querying for the 1000th entry).
+The two nodes Alice and Bob were synchronized and connected. Then we deactivated
+Bob's network and wrote 1000 data records into Alice. Because of the network partition
+it is impossible for Bob to have the fresh data.
+We turned on the network and timed how long it takes for Bob to receive all data entries
+(by querying for the 1000th entry).
 
-Results (Replicating after network split):
+Results (replication after network split):
 
 * Riak: 6 seconds
 * Cassandra (3 nodes): 20 seconds
@@ -239,28 +240,29 @@ When configured as replica pair it is not possible to read from the MongoDB Slav
 ## Experiment 2b
 
 Since we had MongoDB as Replica Pair in the experiment 2, it was impossible
-to read from the Slave. That's why we made an experiment 2b with a slightly
+to read from the slave. That's why we made an experiment 2b with a slightly
 different configuration.
 
-We set up Alice and Bob as Replica Pair. Another MongoDB instance "Charles" was
-used as Arbiter (Quorum Device). MongoDB choosed the first one (Alice) to be the
-Master and Bob the Slave. Now we pushed 1000 data records into Alice.
+We set up Alice and Bob as Replica Pair. Another MongoDB instance "Charly" was
+used as arbiter (Quorum Device). MongoDB chose the first one (Alice) to be the
+master and Bob the slave. Then we pushed 1000 data records into Alice.
 
-Then we stopped Alice in 3 ways:
+We stopped Alice in three different ways:
 
-* removed the network connection
-* stopped it gracefully
-* used: kill -9 
+* by removing the network connection
+* by stopping it gracefully
+* by using "kill -9" 
 
-After that we checked how long it takes Bob to recognize that Alice had
-disappeared and Bob becomes Master on its own.
+After that we timed how long Bob needs to recognize that Alice has
+disappeared and Bob become master.
 
 Result: It took 1 second for Bob to become Master and thus allowing the client
 to read from Bob.
 
-We noticed that stopping the node and kill -9 worked great. But it did not notice
-the network split, if we just removed the network connection. We assume that this
-is because of a timeout on the tcp layer. 
+We noticed that stopping the node and kill -9 worked great. But Bob did not notice
+the network split if we just removed the network connection. We assume that this
+is because the virtual machine does not send any interupt like a physical network
+interface would waiting for the TCP connection to time out.
 
 # Sources
 * Eric Brewer: "Towards Robust Distributed Systems"
