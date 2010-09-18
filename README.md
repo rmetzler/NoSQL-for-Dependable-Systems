@@ -12,15 +12,7 @@ Richard Metzler [@rmetzler](twitter.com/rmetzler "follow Richard Metzler on Twit
 Jan Schütze [@dracoblue](twitter.com/dracoblue "follow Jan Schütze on Twitter")
 
 
-<<<<<<< HEAD
-## Fault Model
-=======
-_TODO: EXPLAIN QUORUMS (Fault tolerant patterns II page 11)_
-_TODO: Explain Amnesia_
-_TODO: Explain Split Brain_
-
 # Fault Model
->>>>>>> 399c8756b5be2677abfd30d4ceacd611dc7a605e
 On very large e-commerce websites like Amazon people order every minute _TODO: WRITE SOME FACTS_. Amazon has statistics showing a causal connection between response time of the amazon.com website and the time potential customers spend on the website. _TODO: SOURCE?_
 The customer's shopping cart has to be always accessible for writes and the slightest outage has direct significant financial consequences.
 
