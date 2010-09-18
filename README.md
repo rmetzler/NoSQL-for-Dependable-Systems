@@ -156,18 +156,18 @@ More information about MongoDB is available at the official website at
 ## Replication
 
 There is Master/Slave replication in MongoDB available. In this case one can
-read from the Slaves and the Master, but write only into the Master.
+read from the slaves and the master, but write only into the master.
 
 Additionally there are Replica Pairs available. When using Replica Pairs only
-one of those two nodes is the Master. Only read and write is possible on the
+one of two nodes is the master at any time. Read and write is only possible on the
 master of the Replica Pair.
 
 In case one node of the Replica Pair fails the other one is made the new
-master. Deciding who is the master can be done by an external Arbiter (Quorum
+master. Deciding who is the master can be done by an external arbiter (Quorum
 Device).
 
 The MongoDB Team is currently working on Replica Sets, which are meant to allow
-even more then 2 machines to be part of this replication architecture.
+more then 2 machines to be part of the replication configuration.
 
 ## Crash
 
