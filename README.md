@@ -13,10 +13,6 @@ Richard Metzler [@rmetzler](twitter.com/rmetzler "follow Richard Metzler on Twit
 Jan Schütze [@dracoblue](twitter.com/dracoblue "follow Jan Schütze on Twitter")
 
 
-_TODO: EXPLAIN QUORUMS (Fault tolerant patterns II page 11)_
-_TODO: Explain Amnesia_
-_TODO: Explain Split Brain_
-
 ## Fault Model
 On very large e-commerce websites like Amazon people order every minute _TODO: WRITE SOME FACTS_. Amazon has statistics showing a causal connection between response time of the amazon.com website and the time potential customers spend on the website. _TODO: SOURCE?_
 The customer's shopping cart has to be always accessible for writes and the slightest outage has direct significant financial consequences.
@@ -31,6 +27,22 @@ What our big e-commerce websites need is a datastore that is always read and wri
 _Replication_ is one of the fundamental ideas for fault tolerant systems. But replicating data across datacenters located several hundreds of kilometers away from each other takes time. Using a traditional RDBMS with ACID style transactions to replicate data in a distributed transaction may be slow and not very scalable. Synchronous atomic updates would not be tolerant towards network partitions.
 
 Asynchronous updates can't be atomic, but they are potentially more resistant in case of network partitioning as these are usually transient faults. 
+
+
+## Amnesia
+
+
+
+## Split Brain
+In distributed systems the interconnect between nodes is a weak spot. If it is broken, nodes are split into partitions unable to communicate and thus unable to share state. This scenario is called _split brain_. Nodes in split brain scenarios must be prevented from producing inconsistant state and one method to prevent inconsistency is the quorum consensus.
+
+
+## Quorum
+As the system replica managers in different partitions cannot communicate with each other, the subgroup of replica managers within each partition must be able to decide independently whether they are allowed to carry out operations. A quorum is a subgroup of replica managers whose size gives it the right to carry out operations. __CITE: COULORIS__ One possible criteria for a quorum may be having a majority. Any other partition would be smaller than the majority partition and as a consequence only the majority partition would be the quorum. 
+
+_TODO: Explain Amnesia_
+
+
 
 
 ## Brewer's CAP Theorem
