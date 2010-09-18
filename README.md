@@ -33,7 +33,7 @@ In distributed systems the interconnect between nodes is a weak spot. If it is b
 
 ## Quorum
 As the system replica managers in different partitions cannot communicate with each other, the subgroup of replica managers within each partition must be able to decide independently whether they are allowed to carry out operations. A quorum is a subgroup of replica managers whose size gives it the right to carry out operations. __CITE: COULORIS__ One possible criteria for a quorum may be having a majority. Any other partition would be smaller than the majority partition and as a consequence only the majority partition would be the quorum. 
-
+Another possible quorum criteria could be the availability of a _quorum device_. The partition that is able to access the quorum device is allowed to carry out operations.
 
 # Brewer's CAP Theorem
 
