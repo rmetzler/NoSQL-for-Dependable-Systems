@@ -35,7 +35,7 @@ Asynchronous updates can't be atomic, but they are potentially more resistant in
 
 ## Brewer's CAP Theorem
 
-In _TODO: YEAR_ Eric Brewer at this time head of Inktomi _TODO: CHECK_ hold a keynote at _TODO: CONFERENCE_. He presented his assumption that was later proved in _TODO: SOURCE_ stating that atomic data consistency, high availability (i.e. performance) and network partition tolerance can't be achieved all together at any given time and you may get only two of these properties for every distributed operation. This is called the CAP Theorem after the acronym for __C__onsistency, __A__vailability and __P__artition tolerance.
+In 2000 Eric Brewer at this time chief scientist of Inktomi hold a keynote at the "Principles of Distributed Computing" conference. He presented his assumption that was later proved in "Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services" stating that atomic data consistency, high availability (i.e. performance) and network partition tolerance can't be achieved all together at any given time and you may get only two of these properties for every distributed operation. This is called the CAP Theorem after the acronym for __C__onsistency, __A__vailability and __P__artition tolerance.
 
 Because you can't do anything against network partitions in large networks you have to pick between high availability and data consistency. As stated, large e-commerce websites usually go for high availability and trade consistency for that.
 
@@ -222,7 +222,7 @@ the network split, if we just removed the network connection. We assume that thi
 is because of a timeout on the tcp layer. 
 
 ## Sources
-+ Eric Brewer: „Towards Robust Distributed Systems“ 
++ Eric Brewer: „Towards Robust Distributed Systems“ <http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf>
 + Gilbert, Lynch: „Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services“
 + Werner Vogels: „Eventual Consistent“ 
 + W.  Vogels et all: „Dynamo:  Amazon‘s highly Available Key-Value Store“ 
