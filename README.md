@@ -171,7 +171,7 @@ more then 2 machines to be part of the replication configuration.
 
 ## Crash
 
-In case a MongoDB crashs, it has to reindex the entire database. According to
+In case of a MongoDB crash, the entire database must be reindexed again. According to
 David Mytton's blogpost <http://blog.boxedice.com/2010/02/28/notes-from-a-production-mongodb-deployment/>
 this takes up to 72 hours for 664.000.000 database entries.
 
