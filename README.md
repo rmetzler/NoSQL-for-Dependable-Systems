@@ -76,7 +76,7 @@ Consistency over all nodes is reached if W = N .
 
 Read optimized systems will use R = 1, while write optimized systems use W = 1.
 
-Cassandra is able to run in application specific  N / W / R conﬁguration. This helps Cassandra to recover from transient and permanent failures.
+Cassandra is able to run in application specific N / W / R configuration. This helps Cassandra to recover from transient and permanent failures.
 
 ## Products
 
