@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{mapreduce-paper}
+Google research publication: Mapreduce.
+
+\bibitem{effective-java}
+Joshua Bloch.
+\newblock {\em Effective Java (2nd Edition)}.
+\newblock The Java Series. Prentice Hall PTR, Upper Saddle River, NJ, USA,
+  second edition, 2008.
+
+\bibitem{pro-hadoop}
+Jason Venner.
+\newblock {\em Pro Hadoop}.
+\newblock Apress, Berkely, CA, USA, 2009.
+
+\end{thebibliography}
