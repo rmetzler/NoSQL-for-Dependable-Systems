@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.2.13)  20 SEP 2010 12:48
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.2.13)  20 SEP 2010 13:26
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -435,30 +435,47 @@ Overfull \hbox (50.37317pt too wide) in paragraph at lines 390--393
 -[] production -[] mongodb -[] deployment/$[] 
  []
 
-) (./main.bbl) [7] (./main.aux) ) 
+) (./main.bbl
+./main.bbl:10: You can't use `macro parameter character #' in horizontal mode.
+l.10 \newblock Addison Wesley, #
+                                may# 2005.
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+./main.bbl:10: You can't use `macro parameter character #' in horizontal mode.
+l.10 \newblock Addison Wesley, #may#
+                                     2005.
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+) [7] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 6069 strings out of 493848
- 88546 string characters out of 3149207
- 170611 words of memory out of 3000000
- 9236 multiletter control sequences out of 15000+200000
+ 6068 strings out of 493848
+ 88496 string characters out of 3149207
+ 169595 words of memory out of 3000000
+ 9235 multiletter control sequences out of 15000+200000
  8315 words of font info for 30 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,7n,40p,270b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2009/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/pu
-blic/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr9.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/a
-msfonts/cm/cmsy10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmti10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmti9.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmtt10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmtt9.pfb>
-Output written on main.pdf (7 pages, 190158 bytes).
+</usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmbx10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmbx12.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx9.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr9.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
+9.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10
+.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.p
+fb>
+Output written on main.pdf (7 pages, 190557 bytes).
 PDF statistics:
- 141 PDF objects out of 1000 (max. 8388607)
+ 147 PDF objects out of 1000 (max. 8388607)
  34 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -49,7 +49,7 @@ communicate with each other, the subgroup of replica managers
 within each partition must be able to decide independently whether
 they are allowed to carry out operations. A quorum is a subgroup of
 replica managers whose size gives it the right to carry out
-operations. \textbf{CITE: COULORIS} One possible criteria for a
+operations. \cite{Coulouris} One possible criteria for a
 quorum may be having a majority. Any other partition would be
 smaller than the majority partition and as a consequence only the
 majority partition would be the quorum. Another possible quorum
@@ -78,7 +78,7 @@ high availability and trade consistency for that.
 \section{Eventual Consistent}
 
 Werner Vogels, CTO at Amazon, presented in his article
-``Eventually Consistent'' \textbf{CITE: eventually-consistent}\_
+``Eventually Consistent'' \cite{vogels}
 his idea of data being not consistent through atomic transactions
 but only eventually consistent. By trading ACID's atomicy and
 consistency for performance and partition tolerance it is possible
@@ -143,7 +143,7 @@ permanent failures.
 
 Cassandra and Riak are both heavily inspired by Amazon's Dynamo and
 both organize nodes in a ring topology. Also Cloudant's BigCouch
-\textbf{CITE: BIGCOUCH} of CouchDB is closely modeled after Dynamo
+\cite{bigcouch}  of CouchDB is closely modeled after Dynamo
 and features a ring to replicate CouchDB instances. N consecutive
 nodes on the ring form one replica set and replica sets overlap. By
 distributing the nodes in the physical space a better fault

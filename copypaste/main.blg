@@ -2,48 +2,50 @@ This is BibTeX, Version 0.99c (TeX Live 2009)
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: main.bib
-Warning--entry type for "mapreduce-paper" isn't style-file defined
---line 59 of file main.bib
-Warning--to sort, need author or key in mapreduce-paper
+Warning--entry type for "vogels" isn't style-file defined
+--line 28 of file main.bib
+Warning--entry type for "bigcouch" isn't style-file defined
+--line 40 of file main.bib
+Warning--to sort, need author or key in bigcouch
 You've used 3 entries,
             2118 wiz_defined-function locations,
-            512 strings with 4215 characters,
-and the built_in function-call counts, 626 in all, are:
-= -- 58
-> -- 15
+            508 strings with 4298 characters,
+and the built_in function-call counts, 645 in all, are:
+= -- 52
+> -- 26
 < -- 0
-+ -- 7
-- -- 4
-* -- 28
-:= -- 105
-add.period$ -- 8
++ -- 11
+- -- 8
+* -- 31
+:= -- 104
+add.period$ -- 6
 call.type$ -- 3
-change.case$ -- 10
+change.case$ -- 12
 chr.to.int$ -- 0
 cite$ -- 4
-duplicate$ -- 31
+duplicate$ -- 26
 empty$ -- 68
-format.name$ -- 4
+format.name$ -- 8
 if$ -- 138
 int.to.chr$ -- 0
 int.to.str$ -- 3
-missing$ -- 4
-newline$ -- 16
+missing$ -- 2
+newline$ -- 15
 num.names$ -- 4
-pop$ -- 19
+pop$ -- 26
 preamble$ -- 1
-purify$ -- 8
+purify$ -- 10
 quote$ -- 0
-skip$ -- 22
+skip$ -- 26
 stack$ -- 0
 substring$ -- 15
 swap$ -- 3
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 8
+type$ -- 10
 warning$ -- 1
 while$ -- 4
 width$ -- 4
-write$ -- 31
-(There were 2 warnings)
+write$ -- 24
+(There were 3 warnings)

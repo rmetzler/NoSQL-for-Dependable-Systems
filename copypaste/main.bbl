@@ -1,17 +1,16 @@
 \begin{thebibliography}{1}
 
-\bibitem{mapreduce-paper}
-Google research publication: Mapreduce.
+\bibitem{bigcouch}
+Cloudant's bigcouch is open-source - cloudant.
 
-\bibitem{effective-java}
-Joshua Bloch.
-\newblock {\em Effective Java (2nd Edition)}.
-\newblock The Java Series. Prentice Hall PTR, Upper Saddle River, NJ, USA,
-  second edition, 2008.
+\bibitem{Coulouris}
+George Coulouris, Jean Dollimore, and Tim Kindberg.
+\newblock {\em Distributed Systems: Concepts and Design (4th Edition)
+  (International Computer Science Series)}.
+\newblock Addison Wesley, #may# 2005.
 
-\bibitem{pro-hadoop}
-Jason Venner.
-\newblock {\em Pro Hadoop}.
-\newblock Apress, Berkely, CA, USA, 2009.
+\bibitem{vogels}
+Werner Vogels.
+\newblock Eventually consistent - revisited - all things distributed.
 
 \end{thebibliography}
