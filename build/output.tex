@@ -1,17 +1,79 @@
+% This is LLNCS.DEM the demonstration file of
+% the LaTeX macro package from Springer-Verlag
+% for Lecture Notes in Computer Science,
+% version 2.4 for LaTeX2e as of 16. April 2010
+%
+\documentclass{llncs}
+%
+\usepackage{makeidx}  % allows for indexgeneration
+\usepackage{hyperref}
+%
+\begin{document}
+%
+\frontmatter          % for the preliminaries
+%
+\pagestyle{headings}  % switches on printing of running heads
+\addtocmark{NOSQL in Dependable Systems} % additional mark in the TOC
+%
+\mainmatter              % start of the contributions
+%
+\title{NOSQL in Dependable Systems}
+%
+\titlerunning{NOSQL in Dependable Systems}  % abbreviated title (for running head)
+%                                     also used for the TOC unless
+%                                     \toctitle is used
+%
+\author{Richard Metzler \and Jan Sch\"utze}
+%
+\authorrunning{Ivar Ekeland et al.} % abbreviated author list (for running head)
+%
+%%%% list of authors for the TOC (use if author list has to be modified)
+\tocauthor{Richard Metzler and Jan Sch\"utze}
+%
+\institute{Universit\"at Potsdam, Am Neuen Palais 10, 14469 Potsdam, Germany,\\
+\email{presse@uni-potsdam.de},\\ 
+\texttt{http://uni-potsdam.de}
+}
+
+\maketitle              % typeset the title of the contribution
+
+\begin{abstract}
+The fault model for very large e-commerce websites like Amazon is fundamentally
+different from standard websites. These websites loose money when the aren't
+available (or just slow) for potential customers but can't risk to loose any
+data. The data has to be replicated between databases but traditional RDBMSs
+may not fit. This paper discusses some of the better known NoSQL software
+products available today.
+\keywords{fault tolerance, cap theorem, nosql, dynamo, riak, cassandra, mongodb, couchdb}
+\end{abstract}
+\section{NOSQL in Dependable Systems}
+
+\textbf{Abstract:} The fault model for very large e-commerce
+websites like Amazon is fundamentally different from standard
+websites. These websites loose money when the aren't available (or
+just slow) for potential customers but can't risk to loose any
+data. The data has to be replicated between databases but
+traditional RDBMSs may not fit. This paper discusses some of the
+better known NoSQL software products available today.
+
+\textbf{Keywords:} Fault Tolerance, CAP Theorem, NoSQL, Dynamo,
+Riak, Cassandra, MongoDB, CouchDB
+
+\textbf{Authors:} Richard Metzler
+\href{twitter.com/rmetzler}{@rmetzler}, Jan Schütze
+\href{twitter.com/dracoblue}{@dracoblue}
+
 \section{Fault Model}
 
+On very large e-commerce websites like Amazon people order every
+minute \emph{TODO: WRITE SOME FACTS}. Amazon has statistics showing
+a causal connection between response time of the amazon.com website
+and the time potential customers spend on the website.
+\emph{TODO: SOURCE?} The customer's shopping cart has to be always
+accessible for writes and the slightest outage has direct
+significant financial consequences.
 
-On very large e-commerce platforms like Amazon that serve
-millions of customers using thousands of servers located
-in different datacenters around the world reliability is one
-of the most important requirements because even the slightest
-outage has significant financial consequences. \cite{dynamo} 
-
-There is a particular need for storage technologies that are 
-always available. For example, the customer's shopping cart
-has to be always accessible for writes.
-
-But on the other side failures are the normal case rather than the
+But on the other side failures are the normal case, not an
 exception. Disks fail, the network experiences partitioning and
 whole data centers could become potentially unavailable because of
 natural disasters like hurricanes.
@@ -52,7 +114,7 @@ communicate with each other, the subgroup of replica managers
 within each partition must be able to decide independently whether
 they are allowed to carry out operations. A quorum is a subgroup of
 replica managers whose size gives it the right to carry out
-operations. \cite{Coulouris} One possible criteria for a
+operations. \textbf{CITE: COULORIS} One possible criteria for a
 quorum may be having a majority. Any other partition would be
 smaller than the majority partition and as a consequence only the
 majority partition would be the quorum. Another possible quorum
@@ -64,7 +126,8 @@ carry out operations.
 
 In 2000 Eric Brewer at this time chief scientist of Inktomi hold a
 keynote at the ``Principles of Distributed Computing'' conference.
-He presented his assumption that was later proved in \cite{brewers-conjecture} 
+He presented his assumption that was later proved in
+``Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services''
 stating that atomic data consistency, high availability (i.e.
 performance) and network partition tolerance can't be achieved all
 together at any given time and you may get only two of these
@@ -80,7 +143,7 @@ high availability and trade consistency for that.
 \section{Eventual Consistent}
 
 Werner Vogels, CTO at Amazon, presented in his article
-``Eventually Consistent'' \cite{vogels}
+``Eventually Consistent'' \textbf{CITE: eventually-consistent}\_
 his idea of data being not consistent through atomic transactions
 but only eventually consistent. By trading ACID's atomicy and
 consistency for performance and partition tolerance it is possible
@@ -109,31 +172,43 @@ To avoid ties in failover scenarios usually an odd number is picked
 for N.
 
 With these numbers you are guaranteed \emph{strong consistency} if
-following condition holds: N \textless{} W + R . This is because the
-set of replicas for writing and reading the data overlap.
+following condition holds:
 
-If your replica configuration only holds the condition  N \textgreater{}= W + R
+\begin{itemize}
+\item
+  N \textless{} W + R
+\end{itemize}
+This is because the set of replicas for writing and reading the
+data overlap.
+
+If your replica configuration only holds the condition
+
+\begin{itemize}
+\item
+  N \textgreater{}= W + R
+\end{itemize}
 it only guaranties weak or eventual consistency.
 
-A RDBMS is typically configured with \{N = 2, W = 2, R = 1\} 
-\newline while \{N = 3, W = 2, R = 2\} is a common configuration for fault
+A RDBMS is typically configured with \{N = 2, W = 2, R = 1\} while
+\{N = 3, W = 2, R = 2\} is a common configuration for fault
 tolerant systems.
 
 It is possible to deduce different attributes from these
 configuration properties. Consistency over all nodes is reached if
-W = N . Read optimized systems will use R = 1, while write optimized
+W = N .
+
+Read optimized systems will use R = 1, while write optimized
 systems use W = 1.
 
-Dynamo is able to run in application specific N / W / R
-configuration. This helps Dynamo to recover from transient and
-permanent failures. Apache Cassandra also implements this as application
-specific while with Riak it is possible to specify this per operation.
+Cassandra is able to run in application specific N / W / R
+configuration. This helps Cassandra to recover from transient and
+permanent failures.
 
 \section{Ring topology}
 
 Cassandra and Riak are both heavily inspired by Amazon's Dynamo and
 both organize nodes in a ring topology. Also Cloudant's BigCouch
-\cite{bigcouch}  of CouchDB is closely modeled after Dynamo
+\textbf{CITE: BIGCOUCH} of CouchDB is closely modeled after Dynamo
 and features a ring to replicate CouchDB instances. N consecutive
 nodes on the ring form one replica set and replica sets overlap. By
 distributing the nodes in the physical space a better fault
@@ -359,26 +434,48 @@ connection. We assume that this is because the virtual machine does
 not send any interupt like a physical network interface would
 waiting for the TCP connection to time out.
 
-%\section{Sources}
+\section{Sources}
+
+\begin{itemize}
+\item
+  Eric Brewer: ``Towards Robust Distributed Systems''
+  \url{http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf}
+\item
+  Gilbert, Lynch:
+  ``Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services''
+\item
+  Werner Vogels: ``Eventual Consistent''
+\item
+  W. Vogels et all: "Dynamo: Amazon's highly Available Key-Value
+  Store
+\item
+  Lakshman, Malik:
+  ``Cassandra - A Decentralized Structured Storage System''
+\item
+  David Mytton: ``Notes from a production MongoDB deployment''
+  \url{http://blog.boxedice.com/2010/02/28/notes-from-a-production-mongodb-deployment/}
+\item
+  Coulouris et al: ``Distributed Systems. Concepts and Design''
+\end{itemize}
 %
-%\begin{itemize}
-%\item
-%  Eric Brewer: ``Towards Robust Distributed Systems''
-%  \url{http://www.cs.berkeley.edu/~brewer/cs262b-2004/PODC-keynote.pdf}
-%\item
-%  Gilbert, Lynch:
-%  ``Brewer‘s Conjecture and the Feasibility of Consistent, Available, Partition-Tolerant Web Services''
-%\item
-%  Werner Vogels: ``Eventual Consistent''
-%\item
-%  W. Vogels et all: "Dynamo: Amazon's highly Available Key-Value
-%  Store
-%\item
-%  Lakshman, Malik:
-%  ``Cassandra - A Decentralized Structured Storage System''
-%\item
-%  David Mytton: ``Notes from a production MongoDB deployment''
-%  \url{http://blog.boxedice.com/2010/02/28/notes-from-a-production-mongodb-deployment/}
-%\item
-%  Coulouris et al: ``Distributed Systems. Concepts and Design''
-%\end{itemize}
+% ---- Bibliography ----
+%
+\begin{thebibliography}{}
+%
+%\bibitem[1980]{2clar:eke}
+%Clarke, F., Ekeland, I.:
+%Nonlinear oscillations and
+%boundary-value problems for Hamiltonian systems.
+%Arch. Rat. Mech. Anal. 78, 315--333 (1982)
+
+\end{thebibliography}
+\clearpage
+\addtocmark[2]{Author Index} % additional numbered TOC entry
+\renewcommand{\indexname}{Author Index}
+\printindex
+%\clearpage
+%\addtocmark[2]{Subject Index} % additional numbered TOC entry
+%\markboth{Subject Index}{Subject Index}
+%\renewcommand{\indexname}{Subject Index}
+%\input{subjidx.ind}
+\end{document}
