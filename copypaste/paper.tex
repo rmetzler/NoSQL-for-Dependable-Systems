@@ -9,10 +9,9 @@ outage has significant financial consequences. \cite{dynamo}
 
 There is a particular need for storage technologies that are 
 always available. For example, the customer's shopping cart
-has to be always accessible for writes.
-
-But on the other side failures are the normal case rather than the
-exception. Disks fail, the network experiences partitioning and
+has to be always accessible for writes. But on the other side failures 
+are the normal case rather than the exception. Disks fail,
+ the network experiences partitioning and
 whole data centers could become potentially unavailable because of
 natural disasters like hurricanes.
 
@@ -68,8 +67,8 @@ He presented his assumption that was later proved in \cite{brewers-conjecture}
 stating that atomic data consistency, high availability (i.e.
 performance) and network partition tolerance can't be achieved all
 together at any given time and you may get only two of these
-properties for every distributed operation. This is called the CAP
-Theorem after the acronym for \textbf{C}onsistency,
+properties for every distributed operation. This is called the \emph{CAP
+Theorem} after the acronym for \textbf{C}onsistency,
 \textbf{A}vailability and \textbf{P}artition tolerance.
 
 Because it is impossible to prevent network partitions in large
@@ -88,8 +87,8 @@ to increase the response time and fault tolerance of websites. The
 database replications may not be fully consistent but a customer
 wouldn't usually experience any inconsistencies.
 
-He defined the \textbf{inconsistency window} as
-``The period between the update and the moment when it is guaranteed that any observer will always see the updated value.''
+Vogeles defines the \emph{inconsistency window} as
+\emph{``The period between the update and the moment when it is guaranteed that any observer will always see the updated value.''}
 
 \section{N / W / R Replica Configuration}
 
@@ -108,21 +107,18 @@ configuration for \emph{quorum} like systems:
 To avoid ties in failover scenarios usually an odd number is picked
 for N.
 
-With these numbers you are guaranteed \emph{strong consistency} if
+With these numbers it is guaranteed \emph{strong consistency} if
 following condition holds: N \textless{} W + R . This is because the
-set of replicas for writing and reading the data overlap.
-
-If your replica configuration only holds the condition  N \textgreater{}= W + R
+set of replicas for writing and reading the data overlap. If the
+replica configuration holds the condition  N \textgreater{}= W + R
 it only guaranties weak or eventual consistency.
-
-A RDBMS is typically configured with \{N = 2, W = 2, R = 1\} 
-\newline while \{N = 3, W = 2, R = 2\} is a common configuration for fault
-tolerant systems.
 
 It is possible to deduce different attributes from these
 configuration properties. Consistency over all nodes is reached if
 W = N . Read optimized systems will use R = 1, while write optimized
-systems use W = 1.
+systems use W = 1. A RDBMS is typically configured with \{N = 2, W = 2, R = 1\} 
+\newline while \{N = 3, W = 2, R = 2\} is a common configuration for fault
+tolerant systems.
 
 Dynamo is able to run in application specific N / W / R
 configuration. This helps Dynamo to recover from transient and
@@ -131,13 +127,15 @@ specific while with Riak it is possible to specify this per operation.
 
 \section{Ring topology}
 
-Cassandra and Riak are both heavily inspired by Amazon's Dynamo and
-both organize nodes in a ring topology. Also Cloudant's BigCouch
-\cite{bigcouch}  of CouchDB is closely modeled after Dynamo
-and features a ring to replicate CouchDB instances. N consecutive
-nodes on the ring form one replica set and replica sets overlap. By
-distributing the nodes in the physical space a better fault
-tolerance should be obtained.
+Cassandra and Riak are both heavily inspired by Amazon's Dynamo and organize
+replicating nodes in a ring topology like Dynamo does. Also Cloudant's BigCouch
+\cite{bigcouch} for CouchDB is closely modeled after Dynamo
+and features a ring to replicate CouchDB instances.
+
+N consecutive nodes on the ring form one replica set for a certain
+data partition. Replica sets overlap as every node is the main node
+for a data partition and the replica for one or more other data partitions.
+%By distributing the nodes in the physical space a better fault tolerance should be obtained.
 
 \section{Products}
 
@@ -187,14 +185,10 @@ One of Riaks features is the variable configuration of N W R:
 \item
   R \& W can vary for each operation (read/write/delete)
 \end{itemize}
-There are also additional quorums for:
+There are also additional quorum properties for 
+\emph{durable writes to disk} and \emph{delete} operation.
 
-\begin{itemize}
-\item
-  durable writes to disk
-\item
-  deletes
-\end{itemize}
+
 \subsection{Cassandra 0.6.3}
 
 Cassandra is a column oriented distributed database system written
@@ -226,7 +220,7 @@ More information about MongoDB is available at the official website
 at \url{http://www.mongodb.org/} or at the wiki at
 \url{http://www.mongodb.org/display/DOCS/Home}.
 
-\subsection{Replication}
+\subsubsection{Replication}
 
 There is Master/Slave replication in MongoDB available. In this
 case one can read from the slaves and the master, but write only
@@ -236,15 +230,15 @@ Additionally there are Replica Pairs available. When using Replica
 Pairs only one of two nodes is the master at any time. Read and
 write is only possible on the master of the Replica Pair.
 
-In case one node of the Replica Pair fails the other one is made
-the new master. Deciding who is the master can be done by an
-external arbiter (Quorum Device).
+When one node of the Replica Pair fails the other one is made
+the new master. This decision of who is the master is done by a
+configured arbiter (Quorum Device).
 
 The MongoDB Team is currently working on Replica Sets, which are
 meant to allow more then 2 machines to be part of the replication
 configuration.
 
-\subsection{Crash}
+\subsubsection{Crash}
 
 In case of a MongoDB crash, the entire database must be reindexed
 again. According to David Mytton's blogpost
@@ -257,7 +251,6 @@ That's why MongoDB has an increased MTTR (Mean Time To Repair).
 
 CouchDB is a document oriented database written in Erlang with
 support for JavaScript views. CouchDB is an Apache Project.
-
 Access to the data is made available via an HTTP interface by
 exchanging JSON objects.
 
@@ -345,15 +338,13 @@ We stopped Alice in three different ways:
 \item
   by stopping it gracefully
 \item
-  by using ``kill --9''
+  by using \texttt{kill -9}
 \end{itemize}
 After that we timed how long Bob needs to recognize that Alice has
 disappeared and Bob become master.
 
 Result: It took 1 second for Bob to become Master and thus allowing
-the client to read from Bob.
-
-We noticed that stopping the node and kill --9 worked great. But
+the client to read from Bob. We noticed that stopping the node and \texttt{kill -9} worked great. But
 Bob did not notice the network split if we just removed the network
 connection. We assume that this is because the virtual machine does
 not send any interupt like a physical network interface would
