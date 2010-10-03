@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.2.13)  25 SEP 2010 16:21
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.2.13)  3 OCT 2010 19:13
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -389,15 +389,20 @@ Package hyperref Warning: bookmark level for unknown title defaults to 0.
 
 Package hyperref Warning: bookmark level for unknown author defaults to 0.
 
-(./abstract.tex) (./paper.tex [1
+(./abstract.tex
+Overfull \hbox (17.059pt too wide) in paragraph at lines 2--8
+\OT1/cmr/m/n/9 quently. To max-i-mize re-li-a-bil-ity, data should be repli-cat
+ed be-tween databases.
+ []
+
+) (./paper.tex [1
 
 
 
 {/usr/local/texlive/2009/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
 LaTeX Font Info:    Try loading font information for OML+cmr on input line 111.
 
-
-(/usr/local/texlive/2009/texmf-dist/tex/latex/base/omlcmr.fd
+ (/usr/local/texlive/2009/texmf-dist/tex/latex/base/omlcmr.fd
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <10> not available
@@ -441,10 +446,10 @@ return to the right one by typing `I}' or `I$' or `I\par'.
 
 ) [7] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 6071 strings out of 493848
- 88535 string characters out of 3149207
- 170663 words of memory out of 3000000
- 9237 multiletter control sequences out of 15000+200000
+ 6073 strings out of 493848
+ 88562 string characters out of 3149207
+ 170699 words of memory out of 3000000
+ 9238 multiletter control sequences out of 15000+200000
  8315 words of font info for 30 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,7n,40p,270b,353s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -460,9 +465,9 @@ i10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 9.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10
 .pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.p
 fb>
-Output written on main.pdf (7 pages, 191512 bytes).
+Output written on main.pdf (7 pages, 192276 bytes).
 PDF statistics:
- 148 PDF objects out of 1000 (max. 8388607)
- 35 named destinations out of 1000 (max. 500000)
+ 149 PDF objects out of 1000 (max. 8388607)
+ 36 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 
