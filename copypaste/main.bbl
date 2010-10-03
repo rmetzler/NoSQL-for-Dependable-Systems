@@ -2,6 +2,7 @@
 
 \bibitem{bigcouch}
 Cloudant's bigcouch is open-source - cloudant.
+\newblock \url{http://blog.cloudant.com/cloudant-core-is-open-source}.
 
 \bibitem{Coulouris}
 George Coulouris, Jean Dollimore, and Tim Kindberg.
@@ -26,5 +27,7 @@ Seth Gilbert and Nancy Lynch.
 \bibitem{vogels}
 Werner Vogels.
 \newblock Eventually consistent - revisited - all things distributed.
+\newblock
+  \url{http://www.allthingsdistributed.com/2008/12/eventually_consistent.html}.
 
 \end{thebibliography}
