@@ -1,10 +1,10 @@
 \section{Fault Model}
 
 
-On very large e-commerce platforms like Amazon that serve
+Very large e-commerce platforms like Amazon serve
 millions of customers using thousands of servers located
-in different datacenters around the world reliability is one
-of the most important requirements because even the slightest
+in different datacenters around the world. Reliability is one
+of the most important requirements, because even the slightest
 outage has significant financial consequences. \cite{dynamo} 
 
 There is a particular need for storage technologies that are 
@@ -41,7 +41,7 @@ In distributed systems the interconnect between nodes is a weak
 spot. If it is broken, nodes are split into partitions unable to
 communicate and thus unable to share state. This scenario is called
 \emph{split brain}. Nodes in split brain scenarios must be
-prevented from producing inconsistant state and one method to
+prevented from producing inconsistent state. One method to
 prevent inconsistency is the quorum consensus.
 
 \subsection{Quorum}
@@ -81,13 +81,13 @@ high availability and trade consistency for that.
 Werner Vogels, CTO at Amazon, presented in his article
 ``Eventually Consistent'' \cite{vogels}
 his idea of data being not consistent through atomic transactions
-but only eventually consistent. By trading ACID's atomicy and
+but only eventually consistent. By trading ACID's atomicity and
 consistency for performance and partition tolerance it is possible
 to increase the response time and fault tolerance of websites. The
 database replications may not be fully consistent but a customer
 wouldn't usually experience any inconsistencies.
 
-Vogeles defines the \emph{inconsistency window} as
+Vogels defines the \emph{inconsistency window} as
 \emph{``The period between the update and the moment when it is guaranteed that any observer will always see the updated value.''}
 
 \section{N / W / R Replica Configuration}
@@ -111,7 +111,7 @@ With these numbers it is guaranteed \emph{strong consistency} if
 following condition holds: N \textless{} W + R . This is because the
 set of replicas for writing and reading the data overlap. If the
 replica configuration holds the condition  N \textgreater{}= W + R
-it only guaranties weak or eventual consistency.
+it only guarantees weak or eventual consistency.
 
 It is possible to deduce different attributes from these
 configuration properties. Consistency over all nodes is reached if
@@ -186,7 +186,7 @@ One of Riaks features is the variable configuration of N W R:
   R \& W can vary for each operation (read/write/delete)
 \end{itemize}
 There are also additional quorum properties for 
-\emph{durable writes to disk} and \emph{delete} operation.
+\emph{durable writes to disk} and the \emph{delete} operation.
 
 
 \subsection{Cassandra 0.6.3}
@@ -199,7 +199,7 @@ Cassandra's architecture is inspired by Amazon's Dynamo and the
 Google BigTable.
 
 When developing applications with Cassandra the developer need to
-configure the collumns before Cassandra can be started. Thus
+configure the columns before Cassandra can be started. Thus
 Cassandra is not schema less like one may expect from the term
 NoSQL. Once configured you can search and order the documents by
 these columns.
