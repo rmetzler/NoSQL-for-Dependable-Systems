@@ -2,23 +2,19 @@ This is BibTeX, Version 0.99c (TeX Live 2009)
 The top-level auxiliary file: main.aux
 The style file: plain.bst
 Database file #1: main.bib
-Warning--entry type for "vogels" isn't style-file defined
---line 28 of file main.bib
-Warning--entry type for "bigcouch" isn't style-file defined
---line 40 of file main.bib
 Warning--to sort, need author or key in bigcouch
 You've used 5 entries,
             2118 wiz_defined-function locations,
-            523 strings with 4840 characters,
-and the built_in function-call counts, 1641 in all, are:
-= -- 152
+            525 strings with 4975 characters,
+and the built_in function-call counts, 1663 in all, are:
+= -- 158
 > -- 87
 < -- 1
 + -- 35
 - -- 30
 * -- 110
-:= -- 264
-add.period$ -- 13
+:= -- 270
+add.period$ -- 15
 call.type$ -- 5
 change.case$ -- 29
 chr.to.int$ -- 0
@@ -26,17 +22,17 @@ cite$ -- 6
 duplicate$ -- 60
 empty$ -- 132
 format.name$ -- 30
-if$ -- 347
+if$ -- 353
 int.to.chr$ -- 0
 int.to.str$ -- 5
 missing$ -- 4
-newline$ -- 25
+newline$ -- 27
 num.names$ -- 8
 pop$ -- 43
 preamble$ -- 1
 purify$ -- 25
 quote$ -- 0
-skip$ -- 52
+skip$ -- 48
 stack$ -- 0
 substring$ -- 76
 swap$ -- 14
@@ -47,5 +43,5 @@ type$ -- 18
 warning$ -- 1
 while$ -- 13
 width$ -- 6
-write$ -- 48
-(There were 3 warnings)
+write$ -- 52
+(There was 1 warning)

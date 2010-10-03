@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.2.13)  3 OCT 2010 19:13
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009) (format=pdflatex 2010.2.13)  3 OCT 2010 19:32
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -428,16 +428,16 @@ n-stance ``Charly''
  []
 
 [6]) (./main.bbl
-./main.bbl:10: You can't use `macro parameter character #' in horizontal mode.
-l.10 \newblock Addison Wesley, #
+./main.bbl:11: You can't use `macro parameter character #' in horizontal mode.
+l.11 \newblock Addison Wesley, #
                                 may# 2005.
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
 If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
-./main.bbl:10: You can't use `macro parameter character #' in horizontal mode.
-l.10 \newblock Addison Wesley, #may#
+./main.bbl:11: You can't use `macro parameter character #' in horizontal mode.
+l.11 \newblock Addison Wesley, #may#
                                      2005.
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -465,9 +465,9 @@ i10.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 9.pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10
 .pfb></usr/local/texlive/2009/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.p
 fb>
-Output written on main.pdf (7 pages, 192276 bytes).
+Output written on main.pdf (7 pages, 195120 bytes).
 PDF statistics:
- 149 PDF objects out of 1000 (max. 8388607)
+ 153 PDF objects out of 1000 (max. 8388607)
  36 named destinations out of 1000 (max. 500000)
  17 words of extra memory for PDF output out of 10000 (max. 10000000)
 
